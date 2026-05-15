@@ -16,10 +16,15 @@ class EquipoModelo {
         }
     }
 
-    // Listar todos los equipos
-    public function listar() {
-        $sql = "SELECT id, nombre, horas_uso, umbral FROM equipos";
-        $stmt = $this->conn->prepare($sql);
+    // Listar equipos; los usuarios solo ven visibles, admin puede ver todo
+    public function listar($soloVisibles = true) {
+        if ($soloVisibles) {
+            $sql = "SELECT id, nombre, horas_uso, umbral, visible FROM equipos WHERE visible = 1";
+            $stmt = $this->conn->prepare($sql);
+        } else {
+            $sql = "SELECT id, nombre, horas_uso, umbral, visible FROM equipos";
+            $stmt = $this->conn->prepare($sql);
+        }
         $stmt->execute();
         $result = $stmt->get_result();
         $equipos = [];
@@ -59,6 +64,26 @@ class EquipoModelo {
             $equipos[] = $row;
         }
         return $equipos;
+    }
+
+    // Cambiar visibilidad del equipo
+    public function cambiarVisibilidad($id, $visible) {
+        $sql = "UPDATE equipos SET visible = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ii', $visible, $id);
+        $success = $stmt->execute();
+        $stmt->close();
+        return $success;
+    }
+
+    // Eliminar equipo
+    public function eliminar($id) {
+        $sql = "DELETE FROM equipos WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $success = $stmt->execute();
+        $stmt->close();
+        return $success;
     }
 }
 ?>

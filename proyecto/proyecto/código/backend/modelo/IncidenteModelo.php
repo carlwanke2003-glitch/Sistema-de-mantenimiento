@@ -16,10 +16,15 @@ class IncidenteModelo {
         }
     }
 
-    // Listar todos los incidentes
-    public function listar() {
-        $sql = "SELECT id, descripcion, estado, fecha, equipo_id FROM incidentes";
-        $stmt = $this->conn->prepare($sql);
+    // Listar incidentes; los usuarios solo ven visibles, admin puede ver todo
+    public function listar($soloVisibles = true) {
+        if ($soloVisibles) {
+            $sql = "SELECT id, descripcion, estado, fecha, equipo_id, visible FROM incidentes WHERE visible = 1";
+            $stmt = $this->conn->prepare($sql);
+        } else {
+            $sql = "SELECT id, descripcion, estado, fecha, equipo_id, visible FROM incidentes";
+            $stmt = $this->conn->prepare($sql);
+        }
         $stmt->execute();
         $result = $stmt->get_result();
         $incidentes = [];
@@ -45,6 +50,26 @@ class IncidenteModelo {
         $sql = "UPDATE incidentes SET descripcion = ?, estado = ?, equipo_id = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ssii", $descripcion, $estado, $equipo_id, $id);
+        $success = $stmt->execute();
+        $stmt->close();
+        return $success;
+    }
+
+    // Cambiar visibilidad del incidente
+    public function cambiarVisibilidad($id, $visible) {
+        $sql = "UPDATE incidentes SET visible = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ii', $visible, $id);
+        $success = $stmt->execute();
+        $stmt->close();
+        return $success;
+    }
+
+    // Eliminar un incidente
+    public function eliminar($id) {
+        $sql = "DELETE FROM incidentes WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id);
         $success = $stmt->execute();
         $stmt->close();
         return $success;

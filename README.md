@@ -1,1 +1,0 @@
-# Sistema-de-gestion-de-incidentes-y-mantenimiento-Predictivo-para-peque-as-empresas
