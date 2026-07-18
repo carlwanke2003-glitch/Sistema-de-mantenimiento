@@ -17,14 +17,14 @@ class EquipoControlador {
     public function listar() {
         $soloVisibles = !isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin';
         $equipos = $this->modelo->listar($soloVisibles);
-        header('Content-Type: application/json');
-        echo json_encode($equipos);
+        require_once '../vista/equipo/listar.php';
     }
 
     private function requireAdmin() {
         if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
             http_response_code(403);
-            echo json_encode(['error' => 'Acceso denegado']);
+            $error = 'Acceso denegado';
+            require_once '../vista/error.php';
             return false;
         }
         return true;
@@ -38,10 +38,12 @@ class EquipoControlador {
         $data = json_decode(file_get_contents('php://input'), true);
         if (isset($data['nombre']) && isset($data['horas_uso']) && isset($data['umbral'])) {
             $success = $this->modelo->crear($data['nombre'], $data['horas_uso'], $data['umbral']);
-            echo json_encode(['success' => $success]);
+            $resultado = ['success' => $success];
+            require_once '../vista/equipo/resultado.php';
         } else {
             http_response_code(400);
-            echo json_encode(['error' => 'Datos incompletos']);
+            $error = 'Datos incompletos';
+            require_once '../vista/error.php';
         }
     }
 
@@ -53,10 +55,12 @@ class EquipoControlador {
         $data = json_decode(file_get_contents('php://input'), true);
         if (isset($data['id']) && isset($data['nombre']) && isset($data['horas_uso']) && isset($data['umbral'])) {
             $success = $this->modelo->actualizar($data['id'], $data['nombre'], $data['horas_uso'], $data['umbral']);
-            echo json_encode(['success' => $success]);
+            $resultado = ['success' => $success];
+            require_once '../vista/equipo/resultado.php';
         } else {
             http_response_code(400);
-            echo json_encode(['error' => 'Datos incompletos']);
+            $error = 'Datos incompletos';
+            require_once '../vista/error.php';
         }
     }
 
@@ -68,10 +72,12 @@ class EquipoControlador {
         $data = json_decode(file_get_contents('php://input'), true);
         if (isset($data['id'])) {
             $success = $this->modelo->eliminar($data['id']);
-            echo json_encode(['success' => $success]);
+            $resultado = ['success' => $success];
+            require_once '../vista/equipo/resultado.php';
         } else {
             http_response_code(400);
-            echo json_encode(['error' => 'ID requerido']);
+            $error = 'ID requerido';
+            require_once '../vista/error.php';
         }
     }
 
@@ -83,18 +89,19 @@ class EquipoControlador {
         $data = json_decode(file_get_contents('php://input'), true);
         if (isset($data['id']) && isset($data['visible'])) {
             $success = $this->modelo->cambiarVisibilidad($data['id'], $data['visible']);
-            echo json_encode(['success' => $success]);
+            $resultado = ['success' => $success];
+            require_once '../vista/equipo/resultado.php';
         } else {
             http_response_code(400);
-            echo json_encode(['error' => 'Datos incompletos']);
+            $error = 'Datos incompletos';
+            require_once '../vista/error.php';
         }
     }
 
     // Equipos que necesitan mantenimiento
     public function necesitanMantenimiento() {
         $equipos = $this->modelo->equiposNecesitanMantenimiento();
-        header('Content-Type: application/json');
-        echo json_encode($equipos);
+        require_once '../vista/equipo/necesitan_mantenimiento.php';
     }
 }
 
