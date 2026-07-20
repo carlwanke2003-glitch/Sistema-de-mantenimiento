@@ -37,21 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión - PredictiveMaintain</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f7fb; color: #333; margin: 0; }
-        .container { max-width: 420px; margin: 80px auto; background: #fff; padding: 32px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        h1 { margin-bottom: 18px; color: #004a91; }
-        label { display: block; margin-top: 14px; font-weight: 600; }
-        input[type="email"], input[type="password"] { width: 100%; padding: 12px 14px; margin-top: 6px; border: 1px solid #cbd5e1; border-radius: 6px; }
-        button { width: 100%; padding: 12px; margin-top: 22px; border: none; border-radius: 6px; background: #004a91; color: #fff; font-size: 16px; cursor: pointer; }
-        button:hover { background: #00356a; }
-        .error { margin-top: 16px; color: #d32f2f; }
-        .footer { margin-top: 24px; font-size: 14px; }
-        .footer a { color: #004a91; text-decoration: none; }
-    </style>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="header-stripe"></div>
     <div class="container">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="logo.png" alt="Logo" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--accent-color); padding: 4px; background: #111;">
+        </div>
         <h1>Iniciar sesión</h1>
         <form method="POST" action="login.php">
             <label for="email">Email</label>

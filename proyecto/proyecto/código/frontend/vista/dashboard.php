@@ -9,59 +9,41 @@ $isAdmin = isAdmin();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard PredictiveMaintain</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; background: #fafafa; color: #333; }
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; background: #004a91; color: #fff; }
-        .header a { color: #fff; text-decoration: none; }
-        .nav { background: #fff; border-bottom: 1px solid #ddd; padding: 12px 24px; }
-        .nav a { margin-right: 18px; color: #004a91; text-decoration: none; font-weight: 600; }
-        h1 { color: #222; margin-bottom: 10px; }
-        h2 { margin: 0 0 12px; font-size: 20px; }
-        .section { margin-bottom: 30px; padding: 0 24px; }
-        .table-wrapper { overflow-x: auto; }
-        .card { background: #fff; border-radius: 10px; padding: 18px 18px; margin-bottom: 18px; box-shadow: 0 5px 18px rgba(0,0,0,0.08); }
-        .card label, .card input, .card select, .card button { display: block; width: 100%; margin-bottom: 12px; }
-        .card input, .card select { padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; }
-        .card button { width: auto; background: #004a91; color: #fff; padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer; }
-        .card button:hover { background: #00356a; }
-        table { width: 100%; border-collapse: collapse; background: #fff; }
-        th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
-        th { background-color: #f2f2f2; font-weight: 600; }
-        tr:nth-child(even) td { background-color: #fafafa; }
-        tr:hover td { background-color: #f7f7f7; }
-    </style>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="header-stripe"></div>
     <div class="header">
         <div>
-            <strong>PredictiveMaintain</strong>
-            <span> · Bienvenido <?php echo htmlspecialchars(getCurrentUserName()); ?> (<?php echo htmlspecialchars(getCurrentUserRole()); ?>)</span>
+            <strong><img src="logo.png" alt="Logo" style="width: 32px; height: 32px; vertical-align: middle; border-radius: 50%; margin-right: 8px; border: 1px solid var(--accent-color); background: #111; padding: 2px;"> PredictiveMaintain</strong>
+            <span> · <i class="uil uil-user"></i> Bienvenido <?php echo htmlspecialchars(getCurrentUserName()); ?> (<?php echo htmlspecialchars(getCurrentUserRole()); ?>)</span>
         </div>
-        <div><a href="logout.php">Cerrar sesión</a></div>
+        <div><a href="logout.php"><i class="uil uil-signout"></i> Cerrar sesión</a></div>
     </div>
     <div class="nav">
-        <a href="dashboard.php">Dashboard</a>
-        <a href="turno.php">Turno</a>
-        <a href="historial.php">Historial de Revisiones</a>
-        <a href="pagar.php">Pagar</a>
-        <a href="contacto.php">Contacto</a>
+        <a href="dashboard.php" class="active"><i class="uil uil-dashboard"></i> Dashboard</a>
+        <a href="turno.php"><i class="uil uil-calendar-alt"></i> Turno</a>
+        <a href="historial.php"><i class="uil uil-history"></i> Historial de Revisiones</a>
+        <a href="pagar.php"><i class="uil uil-credit-card"></i> Pagar</a>
+        <a href="contacto.php"><i class="uil uil-envelope"></i> Contacto</a>
     </div>
 
     <?php if ($isAdmin): ?>
     <div class="section">
-        <h2>Administración rápida</h2>
+        <h2><i class="uil uil-setting"></i> Administración rápida</h2>
         <div class="card">
-            <h3>Nuevo equipo</h3>
+            <h3><i class="uil uil-plus-circle"></i> Nuevo equipo</h3>
             <label for="equipoNombre">Nombre</label>
             <input id="equipoNombre" type="text">
             <label for="equipoHoras">Horas de uso</label>
             <input id="equipoHoras" type="number" min="0" value="0">
             <label for="equipoUmbral">Umbral</label>
             <input id="equipoUmbral" type="number" min="0" value="200">
-            <button onclick="crearEquipo()">Agregar equipo</button>
+            <button onclick="crearEquipo()"><i class="uil uil-plus"></i> Agregar equipo</button>
         </div>
         <div class="card">
-            <h3>Nuevo incidente</h3>
+            <h3><i class="uil uil-exclamation-triangle"></i> Nuevo incidente</h3>
             <label for="incidenteDescripcion">Descripción</label>
             <input id="incidenteDescripcion" type="text">
             <label for="incidenteEstado">Estado</label>
@@ -72,7 +54,7 @@ $isAdmin = isAdmin();
             </select>
             <label for="incidenteEquipoId">Equipo ID</label>
             <input id="incidenteEquipoId" type="number" min="1" value="1">
-            <button onclick="crearIncidente()">Agregar incidente</button>
+            <button onclick="crearIncidente()"><i class="uil uil-plus"></i> Agregar incidente</button>
         </div>
     </div>
     <?php endif; ?>

@@ -27,33 +27,24 @@ $pagos = $pagoModel->listar($isAdmin ? null : $userId);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagar - PredictiveMaintain</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; background: #f7f9fc; color: #333; }
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; background: #004a91; color: #fff; }
-        .header a { color: #fff; text-decoration: none; }
-        .nav { background: #fff; border-bottom: 1px solid #ddd; padding: 12px 24px; }
-        .nav a { margin-right: 18px; color: #004a91; text-decoration: none; font-weight: 600; }
-        .container { padding: 24px; }
-        .card { background: #fff; border-radius: 10px; padding: 24px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); max-width: 700px; margin: 0 auto; }
-        button { padding: 12px 18px; border: none; border-radius: 6px; background: #004a91; color: #fff; cursor: pointer; }
-        button:hover { background: #00356a; }
-        .success { color: #2e7d32; margin-top: 16px; }
-    </style>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="header-stripe"></div>
     <div class="header">
         <div>
-            <strong>PredictiveMaintain</strong>
-            <span> · <?php echo htmlspecialchars(getCurrentUserName()); ?> (<?php echo htmlspecialchars(getCurrentUserRole()); ?>)</span>
+            <strong><img src="logo.png" alt="Logo" style="width: 32px; height: 32px; vertical-align: middle; border-radius: 50%; margin-right: 8px; border: 1px solid var(--accent-color); background: #111; padding: 2px;"> PredictiveMaintain</strong>
+            <span> · <i class="uil uil-user"></i> <?php echo htmlspecialchars(getCurrentUserName()); ?> (<?php echo htmlspecialchars(getCurrentUserRole()); ?>)</span>
         </div>
-        <div><a href="logout.php">Cerrar sesión</a></div>
+        <div><a href="logout.php"><i class="uil uil-signout"></i> Cerrar sesión</a></div>
     </div>
     <div class="nav">
-        <a href="dashboard.php">Dashboard</a>
-        <a href="turno.php">Turno</a>
-        <a href="historial.php">Historial de Revisiones</a>
-        <a href="pagar.php">Pagar</a>
-        <a href="contacto.php">Contacto</a>
+        <a href="dashboard.php"><i class="uil uil-dashboard"></i> Dashboard</a>
+        <a href="turno.php"><i class="uil uil-calendar-alt"></i> Turno</a>
+        <a href="historial.php"><i class="uil uil-history"></i> Historial de Revisiones</a>
+        <a href="pagar.php" class="active"><i class="uil uil-credit-card"></i> Pagar</a>
+        <a href="contacto.php"><i class="uil uil-envelope"></i> Contacto</a>
     </div>
     <div class="container">
         <div class="card">
