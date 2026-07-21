@@ -59,64 +59,72 @@ $isAdmin = isAdmin();
     </div>
     <?php endif; ?>
 
-    <div class="section">
-        <h2>Equipos que Necesitan Mantenimiento</h2>
-        <table id="equipos-criticos">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Horas de Uso</th>
-                    <th>Umbral</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Datos cargados por JS -->
-            </tbody>
-        </table>
+    <div class="dashboard-grid">
+        <div class="section">
+            <h2><i class="uil uil-exclamation-octagon"></i> Equipos que Necesitan Mantenimiento</h2>
+            <div class="table-wrapper">
+                <table id="equipos-criticos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Horas de Uso</th>
+                            <th>Umbral</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Datos cargados por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="uil uil-list-ui-alt"></i> Todos los Equipos</h2>
+            <div class="table-wrapper">
+                <table id="equipos-todos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Horas de Uso</th>
+                            <th>Umbral</th>
+                            <?php if ($isAdmin): ?>
+                                <th>Visible</th>
+                                <th>Acciones</th>
+                            <?php endif; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Datos cargados por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <div class="section">
-        <h2>Todos los Equipos</h2>
-        <table id="equipos-todos">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Horas de Uso</th>
-                    <th>Umbral</th>
-                    <?php if ($isAdmin): ?>
-                        <th>Visible</th>
-                        <th>Acciones</th>
-                    <?php endif; ?>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Datos cargados por JS -->
-            </tbody>
-        </table>
-    </div>
-
-    <div class="section">
-        <h2>Lista de Incidentes</h2>
-        <table id="incidentes">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Descripción</th>
-                    <th>Estado</th>
-                    <th>Fecha</th>
-                    <th>Equipo ID</th>
-                    <?php if ($isAdmin): ?>
-                        <th>Visible</th>
-                        <th>Acciones</th>
-                    <?php endif; ?>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Datos cargados por JS -->
-            </tbody>
-        </table>
+        <h2><i class="uil uil-wrench"></i> Lista de Incidentes</h2>
+        <div class="table-wrapper">
+            <table id="incidentes">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th>Equipo ID</th>
+                        <?php if ($isAdmin): ?>
+                            <th>Visible</th>
+                            <th>Acciones</th>
+                        <?php endif; ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Datos cargados por JS -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>

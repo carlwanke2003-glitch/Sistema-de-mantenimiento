@@ -91,7 +91,7 @@ INSERT INTO incidentes (descripcion, estado, equipo_id) VALUES
 
 INSERT INTO usuarios (nombre, email, password, rol) VALUES
 ('Administrador', 'admin@predictive.com', '$2y$10$c0rdBiYkoZKLx5qEMv4Sae01tAaMYwAuavwhJmALtfsJAMcvjxrom', 'admin'),
-('Usuario Demo', 'user@predictive.com', '$2y$10$GQNrX8jLW9Zy/ADpaoPbY.YtWIp7GdLCSbFw9p2M3gltGgE/rM4Be', 'usuario');
+('Usuario Demo', 'user@predictive.com', '$2y$10$/ggiUkM3jHlrMe.XjJxJf.XkUqtclwWLhwDJVEz3xO.uD6IW2t.rq', 'usuario');
 
 INSERT INTO turnos (usuario_id, descripcion, fecha) VALUES
 (2, 'Turno de mantenimiento preventivo', '2026-05-20 10:00:00'),

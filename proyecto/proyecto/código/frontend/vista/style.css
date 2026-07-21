@@ -376,3 +376,29 @@ tr:hover td {
     background: var(--danger-color);
     color: #fff;
 }
+
+/* Dashboard Grid Layout (Two columns on top, one below) */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.dashboard-grid .section {
+    max-width: 100%;
+    margin: 0;
+    padding: 24px 0;
+}
+
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0;
+    }
+    .dashboard-grid .section {
+        padding: 12px 24px;
+    }
+}
